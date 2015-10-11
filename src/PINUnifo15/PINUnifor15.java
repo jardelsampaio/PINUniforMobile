@@ -3,6 +3,9 @@ package PINUnifo15;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JButton;
+import java.awt.BorderLayout;
 
 public class PINUnifor15 {
 
@@ -36,8 +39,14 @@ public class PINUnifor15 {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 900, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnTeste = new JButton("TESTE1");
+		frame.getContentPane().add(btnTeste, BorderLayout.WEST);
+		
+		JButton btnTeste_1 = new JButton("TESTE2");
+		frame.getContentPane().add(btnTeste_1, BorderLayout.SOUTH);
 	}
 
 }
