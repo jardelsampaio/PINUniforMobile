@@ -14,8 +14,14 @@ import java.awt.TextArea;
 import java.awt.Component;
 import javax.swing.Box;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+
+import dao.Acesso;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PINUnifor15 {
 
@@ -56,11 +62,11 @@ public class PINUnifor15 {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Usuário:");
-		lblNewLabel.setBounds(277, 203, 46, 14);
+		lblNewLabel.setBounds(261, 203, 46, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(277, 231, 46, 14);
+		lblNewLabel_1.setBounds(261, 231, 46, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		txtUsuario = new JTextField();
@@ -73,12 +79,32 @@ public class PINUnifor15 {
 		frame.getContentPane().add(txtSenha);
 		
 		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				Acesso cl = new Acesso();
+				cl.Acesso(txtUsuario.getText(),txtSenha.getText());
+				if(cl.acesso == true){
+					TelaInicial tl = new TelaInicial();
+					tl.show();
+					tl.setExtendedState(new TelaInicial().MAXIMIZED_BOTH);
+					dispose();
+					}
+				if(cl.acesso == false){
+					txtUsuario.setText("");
+					txtSenha.setText("");
+					txtUsuario.requestFocus();
+				}
+				cl.acesso = false;
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btnNewButton.setBounds(277, 256, 242, 23);
 		frame.getContentPane().add(btnNewButton);
-		
-		JLabel lblOpaEsqueceuAlgo = new JLabel("opa, esqueceu algo?");
-		lblOpaEsqueceuAlgo.setBounds(318, 287, 179, 14);
-		frame.getContentPane().add(lblOpaEsqueceuAlgo);
 		
 		JLabel label = new JLabel("|");
 		label.setBounds(422, 287, 75, 14);
