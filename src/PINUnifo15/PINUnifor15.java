@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 public class PINUnifor15 {
 
 	private JFrame frame;
-	private JTextField txtUsuario;
+	private JTextField txtLogin;
 	private JPasswordField txtSenha;
 
 	/**
@@ -62,39 +62,42 @@ public class PINUnifor15 {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Usuário:");
-		lblNewLabel.setBounds(261, 203, 46, 14);
+		lblNewLabel.setBounds(255, 203, 65, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Senha:");
-		lblNewLabel_1.setBounds(261, 231, 46, 14);
+		lblNewLabel_1.setBounds(255, 228, 65, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		txtUsuario = new JTextField();
-		txtUsuario.setBounds(318, 200, 201, 20);
-		frame.getContentPane().add(txtUsuario);
-		txtUsuario.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBounds(318, 200, 201, 20);
+		frame.getContentPane().add(txtLogin);
+		txtLogin.setColumns(10);
 		
 		txtSenha = new JPasswordField();
 		txtSenha.setBounds(318, 228, 201, 20);
 		frame.getContentPane().add(txtSenha);
 		
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnEntrar = new JButton("Acessar");
+		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Acesso cl = new Acesso();
-				cl.Acesso(txtUsuario.getText(),txtSenha.getText());
+				cl.Acesso(txtLogin.getText(), txtSenha.getText());
+				
 				if(cl.acesso == true){
 					TelaInicial tl = new TelaInicial();
 					tl.show();
 					tl.setExtendedState(new TelaInicial().MAXIMIZED_BOTH);
 					dispose();
-					}
-				if(cl.acesso == false){
-					txtUsuario.setText("");
-					txtSenha.setText("");
-					txtUsuario.requestFocus();
 				}
+				
+				if (cl.acesso==false){
+					txtLogin.setText("");
+					txtSenha.setText("");
+					txtLogin.requestFocus();
+				}
+				
 				cl.acesso = false;
 			}
 
@@ -103,15 +106,17 @@ public class PINUnifor15 {
 				
 			}
 		});
-		btnNewButton.setBounds(277, 256, 242, 23);
-		frame.getContentPane().add(btnNewButton);
+		btnEntrar.setBounds(255, 256, 135, 38);
+		frame.getContentPane().add(btnEntrar);
 		
-		JLabel label = new JLabel("|");
-		label.setBounds(422, 287, 75, 14);
-		frame.getContentPane().add(label);
-		
-		JLabel lblReportarErro = new JLabel("reportar erro");
-		lblReportarErro.setBounds(432, 287, 65, 14);
-		frame.getContentPane().add(lblReportarErro);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				System.exit(0);
+			}
+		});
+		btnCancelar.setBounds(390, 256, 129, 38);
+		frame.getContentPane().add(btnCancelar);
 	}
 }
