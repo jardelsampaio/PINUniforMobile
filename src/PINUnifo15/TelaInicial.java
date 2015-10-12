@@ -14,6 +14,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JToolBar;
+import javax.swing.JMenu;
+import javax.swing.ImageIcon;
 
 public class TelaInicial extends JFrame {
 
@@ -39,56 +45,48 @@ public class TelaInicial extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicial() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/img/UNIFOR_Logo_21.gif")));
 		setBackground(Color.WHITE);
 		setTitle("UniforOnline - Para desktops");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 920, 600);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnArquivo = new JMenu("Arquivo");
+		menuBar.add(mnArquivo);
+		
+		JMenu mnSair = new JMenu("Sair");
+		mnSair.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/001_39.png")));
+		mnArquivo.add(mnSair);
+		
+		JMenu mnEditar = new JMenu("Editar");
+		menuBar.add(mnEditar);
+		
+		JMenu mnSobre = new JMenu("Sobre");
+		menuBar.add(mnSobre);
+		
+		JMenu mnUniforOnline = new JMenu("Unifor Online");
+		mnUniforOnline.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/001_40.png")));
+		mnSobre.add(mnUniforOnline);
+		
+		JMenu mnNewMenu = new JMenu("Vers\u00E3o do programa");
+		mnNewMenu.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/001_33.png")));
+		mnSobre.add(mnNewMenu);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnNewButton = new JButton("IN\u00CDCIO");
-		btnNewButton.setBounds(10, 11, 120, 29);
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("USU\u00C1RIOS");
-		btnNewButton_1.setBounds(10, 45, 120, 29);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("EVENTOS");
-		btnNewButton_2.setBounds(10, 79, 120, 29);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("RELAT\u00D3RIOS");
-		btnNewButton_3.setBounds(10, 113, 120, 29);
-		contentPane.add(btnNewButton_3);
-		
-		JButton btnTorpedo = new JButton("TORPEDO");
-		btnTorpedo.setBounds(10, 214, 120, 29);
-		contentPane.add(btnTorpedo);
-		
-		JButton btnContato = new JButton("CONTATO");
-		btnContato.setBounds(10, 180, 120, 29);
-		contentPane.add(btnContato);
-		
-		JButton btnFinanceiro = new JButton("FINANCEIRO");
-		btnFinanceiro.setBounds(10, 146, 120, 29);
-		contentPane.add(btnFinanceiro);
-		
-		JButton btnSairDoSistema = new JButton("SAIR");
-		btnSairDoSistema.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnSairDoSistema.setBounds(10, 521, 120, 29);
-		contentPane.add(btnSairDoSistema);
-		
-		JLabel lblNewLabel = new JLabel("Unifor Online - Bem vindo");
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 32));
-		lblNewLabel.setBounds(152, 11, 427, 47);
-		contentPane.add(lblNewLabel);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 894, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 530, Short.MAX_VALUE)
+		);
+		contentPane.setLayout(gl_contentPane);
 	}
 }
