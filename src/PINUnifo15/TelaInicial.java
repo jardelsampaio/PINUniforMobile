@@ -23,6 +23,11 @@ import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.UIManager;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.JRadioButtonMenuItem;
 
 public class TelaInicial extends JFrame {
 
@@ -54,7 +59,6 @@ public class TelaInicial extends JFrame {
 	}
 	
 	private void initComponentes(){
-		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaInicial.class.getResource("/img/UNIFOR_Logo_21.gif")));
 		setBackground(Color.WHITE);
 		setTitle("UniforOnline - Para desktops");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,109 +68,134 @@ public class TelaInicial extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnArquivo = new JMenu("Arquivo");
+		mnArquivo.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnArquivo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+			}
+		});
 		menuBar.add(mnArquivo);
 		
-		JMenu mnSair = new JMenu("Sair");
-		mnSair.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Exit.png")));
-		mnArquivo.add(mnSair);
+		JMenuItem btnSair = new JMenuItem("Sair");
+		btnSair.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Exit.png")));
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		mnArquivo.add(btnSair);
 		
 		JMenu mnCadastrar = new JMenu("Cadastrar");
+		mnCadastrar.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnCadastrar);
 		
 		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
+		mnUsurio.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/People.png")));
 		mnCadastrar.add(mnUsurio);
 		
-		JMenu mnNovoUsuario = new JMenu("Novo usuario");
-		mnNovoUsuario.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Person.png")));
-		mnUsurio.add(mnNovoUsuario);
+		JMenuItem mntmNovoUsurio = new JMenuItem("Novo usu\u00E1rio");
+		mntmNovoUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Create.png")));
+		mnUsurio.add(mntmNovoUsurio);
 		
-		JMenu mnEditarUsurio = new JMenu("Editar usu\u00E1rio");
-		mnEditarUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
-		mnUsurio.add(mnEditarUsurio);
+		JMenuItem mntmEditarUsurio = new JMenuItem("Editar usu\u00E1rio");
+		mntmEditarUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
+		mnUsurio.add(mntmEditarUsurio);
 		
-		JMenu mnExcluirUsurio = new JMenu("Excluir usu\u00E1rio");
-		mnExcluirUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
-		mnUsurio.add(mnExcluirUsurio);
+		JMenuItem mntmExcluirUsurio = new JMenuItem("Excluir usu\u00E1rio");
+		mntmExcluirUsurio.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
+		mnUsurio.add(mntmExcluirUsurio);
 		
 		JMenu mnEvento = new JMenu("Evento");
+		mnEvento.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnEvento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Calendar.png")));
 		mnCadastrar.add(mnEvento);
 		
-		JMenu mnNewMenu_1 = new JMenu("Novo");
-		mnNewMenu_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Create.png")));
-		mnEvento.add(mnNewMenu_1);
+		JMenuItem mntmCadastrarEvento = new JMenuItem("Cadastrar evento");
+		mntmCadastrarEvento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Create.png")));
+		mnEvento.add(mntmCadastrarEvento);
 		
-		JMenu mnNewMenu_2 = new JMenu("Editar");
-		mnNewMenu_2.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
-		mnEvento.add(mnNewMenu_2);
+		JRadioButtonMenuItem rdbtnmntmEditarEvento = new JRadioButtonMenuItem("Editar evento");
+		rdbtnmntmEditarEvento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
+		mnEvento.add(rdbtnmntmEditarEvento);
 		
-		JMenu mnExcluir_1 = new JMenu("Excluir");
-		mnExcluir_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
-		mnEvento.add(mnExcluir_1);
+		JRadioButtonMenuItem rdbtnmntmExcluirEvento = new JRadioButtonMenuItem("Excluir evento");
+		rdbtnmntmExcluirEvento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
+		mnEvento.add(rdbtnmntmExcluirEvento);
 		
 		JMenu mnEstabelecimento = new JMenu("Estabelecimento");
+		mnEstabelecimento.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnEstabelecimento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Company.png")));
 		mnCadastrar.add(mnEstabelecimento);
 		
-		JMenu mnNovo = new JMenu("Novo");
-		mnNovo.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Create.png")));
-		mnEstabelecimento.add(mnNovo);
+		JMenuItem mntmCadastrarEstabelecimento = new JMenuItem("Cadastrar estabelecimento");
+		mntmCadastrarEstabelecimento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Create.png")));
+		mnEstabelecimento.add(mntmCadastrarEstabelecimento);
 		
-		JMenu mnEditar_1 = new JMenu("Editar");
-		mnEditar_1.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
-		mnEstabelecimento.add(mnEditar_1);
+		JMenuItem mntmEditarEstabelecimento = new JMenuItem("Editar estabelecimento");
+		mntmEditarEstabelecimento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Redo.png")));
+		mnEstabelecimento.add(mntmEditarEstabelecimento);
 		
-		JMenu mnExcluir = new JMenu("Excluir");
-		mnExcluir.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
-		mnEstabelecimento.add(mnExcluir);
+		JMenuItem mntmExcluirEstabelecimento = new JMenuItem("Excluir estabelecimento");
+		mntmExcluirEstabelecimento.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Delete.png")));
+		mnEstabelecimento.add(mntmExcluirEstabelecimento);
 		
 		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
+		mnRelatrios.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnRelatrios);
 		
 		JMenu mnNewMenu_3 = new JMenu("Usu\u00E1rios");
+		mnNewMenu_3.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnNewMenu_3.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/People.png")));
 		mnRelatrios.add(mnNewMenu_3);
 		
-		JMenu mnUsuriosAtivos = new JMenu("Usu\u00E1rios ativos");
-		mnNewMenu_3.add(mnUsuriosAtivos);
+		JMenuItem mntmEstatisticasDeUsurios = new JMenuItem("Estatisticas de usu\u00E1rios");
+		mntmEstatisticasDeUsurios.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Report.png")));
+		mnNewMenu_3.add(mntmEstatisticasDeUsurios);
 		
 		JMenu mnNewMenu_4 = new JMenu("Estabelecimento");
+		mnNewMenu_4.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnNewMenu_4.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Company.png")));
 		mnRelatrios.add(mnNewMenu_4);
 		
-		JMenu mnTodosEstabelecimentos = new JMenu("Todos estabelecimentos");
-		mnNewMenu_4.add(mnTodosEstabelecimentos);
+		JMenuItem mntmEstabelecimentosMaisVisitados = new JMenuItem("Estabelecimentos mais visitados");
+		mntmEstabelecimentosMaisVisitados.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Report.png")));
+		mnNewMenu_4.add(mntmEstabelecimentosMaisVisitados);
 		
 		JMenu mnNewMenu_5 = new JMenu("Eventos");
+		mnNewMenu_5.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnNewMenu_5.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Calendar.png")));
 		mnRelatrios.add(mnNewMenu_5);
 		
-		JMenu mnMediaDeVisitante = new JMenu("Media de visitante");
-		mnNewMenu_5.add(mnMediaDeVisitante);
+		JMenuItem mntmltimosEventos = new JMenuItem("\u00DAltimos eventos");
+		mntmltimosEventos.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Report.png")));
+		mnNewMenu_5.add(mntmltimosEventos);
+		
+		JMenu mnEditar = new JMenu("Editar");
+		mnEditar.setFont(new Font("Arial", Font.PLAIN, 12));
+		menuBar.add(mnEditar);
 		
 		JMenu mnSobre = new JMenu("Sobre");
+		mnSobre.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mnSobre);
 		
-		JMenu mnUniforOnline = new JMenu("Unifor Online");
-		mnSobre.add(mnUniforOnline);
+		JMenuItem mntmNewMenuItem = new JMenuItem("Unifor");
+		mntmNewMenuItem.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Info.png")));
+		mnSobre.add(mntmNewMenuItem);
 		
-		JMenu mnNewMenu = new JMenu("Vers\u00E3o do programa");
-		mnSobre.add(mnNewMenu);
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Sobre o programa");
+		mntmNewMenuItem_2.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Info.png")));
+		mnSobre.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmVerso = new JMenuItem("Vers\u00E3o");
+		mntmVerso.setIcon(new ImageIcon(TelaInicial.class.getResource("/img/Info.png")));
+		mnSobre.add(mntmVerso);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(contentPane);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 894, Short.MAX_VALUE)
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 530, Short.MAX_VALUE)
-		);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
 	}
 	
 	private void createEvents(){
